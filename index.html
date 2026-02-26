@@ -45,11 +45,9 @@
         margin: auto;
     }
 
-    /* 英雄区域 (Hero) - 纯净的酒红到白色渐变 */
     .hero {
         padding: 40px 0 80px; 
         text-align: center;
-        /* 修改为左侧酒红，右侧白色的渐变，酒红覆盖前50%以保证白色文字清晰 */
         background: linear-gradient(to right, #722F37 0%, #993f4a 50%, #FFFFFF 100%);
         min-height: 80vh; 
         display: flex;
@@ -69,20 +67,20 @@
         margin-bottom: 24px;
         letter-spacing: 0.05em;
         border: 1px solid rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(4px); /* 加入磨砂玻璃效果 */
+        backdrop-filter: blur(4px);
     }
 
     .hero h1 {
-        font-size: clamp(48px, 6vw, 80px);
+        font-size: clamp(40px, 6vw, 80px);
         font-weight: 700;
         letter-spacing: -.015em;
         margin-bottom: 20px;
         color: #ffffff;
-        text-shadow: 0 4px 15px rgba(0,0,0,0.25); /* 加强阴影防止右侧融入白底 */
+        text-shadow: 0 4px 15px rgba(0,0,0,0.25); 
     }
 
     .hero p {
-        font-size: clamp(20px, 3vw, 24px);
+        font-size: clamp(18px, 3vw, 24px);
         color: #f8f8f8;
         max-width: 700px;
         margin: 0 auto 40px;
@@ -151,6 +149,12 @@
         opacity: 1;
     }
 
+    .policy-separator {
+        opacity: 0.4;
+        margin: 0 12px;
+        font-size: 14px;
+    }
+
     .section {
         padding: 120px 0;
     }
@@ -193,6 +197,7 @@
     .color-card img {
         width: 100%;
         border-radius: 12px;
+        /* 色板图片保持 1:1 (800x800) */
         aspect-ratio: 1/1;
         object-fit: cover;
         background: #eee; 
@@ -226,7 +231,8 @@
     .gallery-item img {
         width: 100%;
         border-radius: 16px;
-        aspect-ratio: 4/3;
+        /* 画廊图片也调整为 1:1，完美适配 1080x1080 */
+        aspect-ratio: 1/1;
         object-fit: cover;
         background: #ccc;
         transition: 0.4s ease;
@@ -274,7 +280,7 @@
         padding: 120px 0;
     }
     .preorder h2 {
-        font-size: 48px;
+        font-size: clamp(36px, 5vw, 48px);
         margin-bottom: 20px;
         background: linear-gradient(90deg, #fff, #888);
         -webkit-background-clip: text;
@@ -291,10 +297,19 @@
 
     @media (max-width: 768px) {
         .section { padding: 80px 0; }
+        
+        .section-title { margin-bottom: 40px; }
+        .section-title h2 { font-size: 28px; } 
+
         .hero { padding: 60px 0 80px; }
         .countdown-wrapper { gap: 8px; }
         .cd-box { padding: 10px; min-width: 70px; }
         .cd-num { font-size: 24px; }
+    }
+    
+    @media (max-width: 480px) {
+        .section-title h2 { font-size: 24px; }
+        .hero h1 { font-size: 36px; }
     }
 </style>
 </head>
@@ -326,28 +341,28 @@
         <div class="color-grid">
             <div class="color-card">
                 <a href="YOUR_LINK_HERE" class="img-link">
-                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=400&q=80" alt="Midnight Blue">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&h=800&q=80" alt="Midnight Blue">
                 </a>
                 <h3>Midnight Blue</h3>
                 <a href="YOUR_LINK_HERE" class="photo-link">View Details &rarr;</a>
             </div>
             <div class="color-card">
                 <a href="YOUR_LINK_HERE" class="img-link">
-                    <img src="https://images.unsplash.com/photo-1506102383123-c8ce1d108f20?auto=format&fit=crop&w=400&q=80" alt="Cherry Red">
+                    <img src="https://images.unsplash.com/photo-1506102383123-c8ce1d108f20?auto=format&fit=crop&w=800&h=800&q=80" alt="Cherry Red">
                 </a>
                 <h3>Cherry Red</h3>
                 <a href="YOUR_LINK_HERE" class="photo-link">View Details &rarr;</a>
             </div>
             <div class="color-card">
                 <a href="YOUR_LINK_HERE" class="img-link">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80" alt="Sunset Orange">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&h=800&q=80" alt="Sunset Orange">
                 </a>
                 <h3>Sunset Orange</h3>
                 <a href="YOUR_LINK_HERE" class="photo-link">View Details &rarr;</a>
             </div>
             <div class="color-card">
                 <a href="YOUR_LINK_HERE" class="img-link">
-                    <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=400&q=80" alt="Aurora Green">
+                    <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&h=800&q=80" alt="Aurora Green">
                 </a>
                 <h3>Aurora Green</h3>
                 <a href="YOUR_LINK_HERE" class="photo-link">View Details &rarr;</a>
@@ -363,19 +378,19 @@
         </div>
         <div class="gallery">
             <div class="gallery-item">
-                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1611078716500-2f22e8316279?auto=format&fit=crop&w=600&q=80" alt="User Work 1"></a>
+                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1611078716500-2f22e8316279?auto=format&fit=crop&w=1080&h=1080&q=80" alt="User Work 1"></a>
                 <a href="YOUR_LINK_HERE" class="photo-link">See project file</a>
             </div>
             <div class="gallery-item">
-                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=600&q=80" alt="User Work 2"></a>
+                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=1080&h=1080&q=80" alt="User Work 2"></a>
                 <a href="YOUR_LINK_HERE" class="photo-link">See project file</a>
             </div>
             <div class="gallery-item">
-                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f0?auto=format&fit=crop&w=600&q=80" alt="User Work 3"></a>
+                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f0?auto=format&fit=crop&w=1080&h=1080&q=80" alt="User Work 3"></a>
                 <a href="YOUR_LINK_HERE" class="photo-link">See project file</a>
             </div>
             <div class="gallery-item">
-                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80" alt="User Work 4"></a>
+                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1080&h=1080&q=80" alt="User Work 4"></a>
                 <a href="YOUR_LINK_HERE" class="photo-link">See project file</a>
             </div>
         </div>
@@ -409,9 +424,12 @@
         <h2>Ready to create?</h2>
         <p style="color: #86868b; font-size: 20px; margin-bottom: 40px;">Be the first to experience the new standard.</p>
         
-        <a href="YOUR_LINK_HERE" class="btn" style="background: #fff; color: #000;">Reserve Your Set</a>
-        <div class="sub-link" style="margin-top: 20px;">
-            <a href="YOUR_LINK_HERE">Read our shipping & refund policy</a>
+        <a href="https://creatorally.com/collections/creatorally-double-sided-colored-plywood-diy-thin-wood-collection-for-every-creative-idea" class="btn" style="background: #fff; color: #000;">Reserve Your Set</a>
+        
+        <div class="sub-link" style="margin-top: 20px; display: flex; justify-content: center; align-items: center;">
+            <a href="https://creatorally.com/pages/shipping-policy">Shipping Policy</a>
+            <span class="policy-separator">|</span>
+            <a href="https://creatorally.com/pages/privacy-policy">Privacy Policy</a>
         </div>
     </div>
 </section>
