@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Color Plywood Series – Pre Order</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --apple-gray: #f5f5f7;
+        --apple-dark: #1d1d1f;
+        --accent-blue: #0066cc;
+        --accent-hover: #004499;
+    }
+    
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        /* 使用 Montserrat 字体 */
+        font-family: 'Montserrat', sans-serif;
+        background: #ffffff;
+        color: var(--apple-dark);
+        line-height: 1.5;
+        overflow-x: hidden;
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .container {
+        width: 88%;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    /* 英雄区域 (Hero) - 缩减顶部间距，加入渐变 */
+    .hero {
+        padding: 40px 0 80px; /* 顶部 padding 从 120px 缩减到 40px */
+        text-align: center;
+        /* 3. 左侧酒红 (#722F37) 到 中间金色 (#D4AF37) 到 右侧白色 (#FFFFFF) */
+        background: linear-gradient(to right, #722F37 0%, #D4AF37 60%, #FFFFFF 100%);
+        min-height: 80vh; /* 稍微减小高度让内容更聚焦 */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2); /* 半透明白底适配暗色背景 */
+        color: #ffffff;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 24px;
+        letter-spacing: 0.05em;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .hero h1 {
+        font-size: clamp(48px, 6vw, 80px);
+        font-weight: 700;
+        letter-spacing: -.015em;
+        margin-bottom: 20px;
+        color: #ffffff;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2); /* 增加阴影防止文字融入白色背景 */
+    }
+
+    .hero p {
+        font-size: clamp(20px, 3vw, 24px);
+        color: #f1f1f1;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        font-weight: 500;
+        text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    }
+
+    .countdown-wrapper {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+    .cd-box {
+        background: rgba(255, 255, 255, 0.9); /* 半透明玻璃质感 */
+        padding: 15px 20px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        min-width: 80px;
+    }
+    .cd-num {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--apple-dark);
+    }
+    .cd-label {
+        font-size: 12px;
+        color: #86868b;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+
+    .btn {
+        display: inline-block;
+        background: var(--apple-dark); /* 改为深色以更好匹配红色/金色背景 */
+        color: #fff;
+        padding: 16px 36px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    .btn:hover {
+        background: #000;
+        transform: scale(1.02);
+    }
+
+    /* 6. 按钮下方的辅助链接 */
+    .sub-link {
+        margin-top: 16px;
+    }
+    .sub-link a {
+        color: inherit;
+        font-size: 14px;
+        text-decoration: underline;
+        opacity: 0.8;
+        transition: 0.3s;
+    }
+    .hero .sub-link a {
+        color: #ffffff; /* 确保 hero 区域的辅助链接可见 */
+    }
+    .sub-link a:hover {
+        opacity: 1;
+    }
+
+    .section {
+        padding: 120px 0;
+    }
+    .section-title {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+    .section-title h2 {
+        font-size: clamp(32px, 4vw, 48px);
+        font-weight: 700;
+    }
+
+    /* 3D 色板展示区 */
+    .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 40px;
+        perspective: 1000px; 
+    }
+
+    .color-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
+        transform-style: preserve-3d;
+    }
+
+    .color-card:hover {
+        transform: translateY(-15px) rotateX(8deg) rotateY(-5deg);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+    }
+
+    /* 使图片链接表现正常 */
+    .color-card a.img-link {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .color-card img {
+        width: 100%;
+        border-radius: 12px;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        background: #eee; 
+        transition: 0.3s ease;
+    }
+    .color-card a.img-link:hover img {
+        opacity: 0.8;
+    }
+
+    .color-card h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    
+    .color-card .photo-link {
+        font-size: 14px;
+        color: var(--accent-blue);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    /* 创作者画廊 */
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    .gallery-item {
+        position: relative;
+    }
+    .gallery-item img {
+        width: 100%;
+        border-radius: 16px;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        background: #ccc;
+        transition: 0.4s ease;
+        display: block;
+    }
+    .gallery-item:hover img {
+        transform: scale(1.03);
+    }
+    .gallery-item .photo-link {
+        display: block;
+        text-align: center;
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--apple-dark);
+        text-decoration: underline;
+    }
+
+    /* 产品特性 */
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+    }
+    .feature {
+        background: var(--apple-gray);
+        padding: 40px;
+        border-radius: 24px;
+        transition: 0.3s ease;
+    }
+    .feature:hover {
+        background: #ebebeb;
+    }
+    .feature h3 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    .feature p {
+        color: #86868b;
+        font-size: 16px;
+    }
+
+    /* 预售转化区 */
+    .preorder {
+        background: #000;
+        color: white;
+        text-align: center;
+        padding: 120px 0;
+    }
+    .preorder h2 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        background: linear-gradient(90deg, #fff, #888);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .footer {
+        background: #1d1d1f;
+        color: #86868b;
+        text-align: center;
+        padding: 40px 0;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        .section { padding: 80px 0; }
+        .hero { padding: 60px 0 80px; }
+        .countdown-wrapper { gap: 8px; }
+        .cd-box { padding: 10px; min-width: 70px; }
+        .cd-num { font-size: 24px; }
+    }
+</style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="container reveal">
+        <div class="hero-badge">⚡ Only 300 Sets in the First Batch</div>
+        <h1>Color, reinvented.</h1>
+        <p>The New Color Plywood Series. Deeper contrast, infinite creative possibilities.</p>
+        
+        <div class="countdown-wrapper">
+            <div class="cd-box"><div class="cd-num" id="days">12</div><div class="cd-label">Days</div></div>
+            <div class="cd-box"><div class="cd-num" id="hours">08</div><div class="cd-label">Hours</div></div>
+            <div class="cd-box"><div class="cd-num" id="mins">00</div><div class="cd-label">Mins</div></div>
+            <div class="cd-box"><div class="cd-num" id="secs">00</div><div class="cd-label">Secs</div></div>
+        </div>
+
+        <a href="#preorder" class="btn">Pre-Order Now</a>
+        <div class="sub-link"><a href="YOUR_LINK_HERE">Watch the announcement video ></a></div>
+    </div>
+</section>
+
+<section class="section" style="background: var(--apple-gray);">
+    <div class="container reveal">
+        <div class="section-title">
+            <h2>Brilliant in every shade.</h2>
+        </div>
+        <div class="color-grid">
+            <div class="color-card">
+                <a href="YOUR_LINK_HERE" class="img-link">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=400&q=80" alt="Midnight Blue">
+                </a>
+                <h3>Midnight Blue</h3>
+                <a href="YOUR_LINK_HERE" class="photo-link">View Details &rarr;</a>
+            </div>
+            <div class="color-card">
+                <a href="YOUR_LINK_HERE" class="img-link">
+                    <img src="https://images.unsplash.com/photo-1506102383123-c8ce1d108f20?auto=format&fit=crop&w=400&q=80" alt="Cherry Red">
+                </a>
+                <h3>Cherry Red</h3>
+                <a href="YOUR_LINK_HERE" class="photo-link">View Details &rarr;</a>
+            </div>
+            <div class="color-card">
+                <a href="YOUR_LINK_HERE" class="img-link">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80" alt="Sunset Orange">
+                </a>
+                <h3>Sunset Orange</h3>
+                <a href="YOUR_LINK_HERE" class="photo-link">View Details &rarr;</a>
+            </div>
+            <div class="color-card">
+                <a href="YOUR_LINK_HERE" class="img-link">
+                    <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=400&q=80" alt="Aurora Green">
+                </a>
+                <h3>Aurora Green</h3>
+                <a href="YOUR_LINK_HERE" class="photo-link">View Details &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container reveal">
+        <div class="section-title">
+            <h2>Creator Gallery. Real magic.</h2>
+        </div>
+        <div class="gallery">
+            <div class="gallery-item">
+                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1611078716500-2f22e8316279?auto=format&fit=crop&w=600&q=80" alt="User Work 1"></a>
+                <a href="YOUR_LINK_HERE" class="photo-link">See project file</a>
+            </div>
+            <div class="gallery-item">
+                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=600&q=80" alt="User Work 2"></a>
+                <a href="YOUR_LINK_HERE" class="photo-link">See project file</a>
+            </div>
+            <div class="gallery-item">
+                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f0?auto=format&fit=crop&w=600&q=80" alt="User Work 3"></a>
+                <a href="YOUR_LINK_HERE" class="photo-link">See project file</a>
+            </div>
+            <div class="gallery-item">
+                <a href="YOUR_LINK_HERE"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80" alt="User Work 4"></a>
+                <a href="YOUR_LINK_HERE" class="photo-link">See project file</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: var(--apple-gray);">
+    <div class="container reveal">
+        <div class="section-title">
+            <h2>Pro performance. Pro results.</h2>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <h3>🥞 Multi-Layer Structure</h3>
+                <p>Control engraving depth precisely and reveal stunning color contrast effortlessly.</p>
+            </div>
+            <div class="feature">
+                <h3>🌳 Premium Basswood</h3>
+                <p>A flawless smooth surface and consistent density for the cleanest laser cuts.</p>
+            </div>
+            <div class="feature">
+                <h3>⚙️ Broad Compatibility</h3>
+                <p>Perfectly optimized for Glowforge, xTool, and most major CO₂ and diode lasers.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="preorder" class="preorder">
+    <div class="container reveal">
+        <h2>Ready to create?</h2>
+        <p style="color: #86868b; font-size: 20px; margin-bottom: 40px;">Be the first to experience the new standard.</p>
+        
+        <a href="YOUR_LINK_HERE" class="btn" style="background: #fff; color: #000;">Reserve Your Set</a>
+        <div class="sub-link" style="margin-top: 20px;">
+            <a href="YOUR_LINK_HERE">Read our shipping & refund policy</a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>© 2026 Creatorally – Designed for Makers.</p>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const countDownDate = new Date().getTime() + (12 * 24 * 60 * 60 * 1000) + (8 * 60 * 60 * 1000);
+
+    const x = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+        document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+        document.getElementById("mins").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("secs").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.querySelector(".countdown-wrapper").innerHTML = "<div class='cd-num'>LAUNCHED!</div>";
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
