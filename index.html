@@ -22,7 +22,6 @@
     }
 
     body {
-        /* 使用 Montserrat 字体 */
         font-family: 'Montserrat', sans-serif;
         background: #ffffff;
         color: var(--apple-dark);
@@ -46,13 +45,13 @@
         margin: auto;
     }
 
-    /* 英雄区域 (Hero) - 缩减顶部间距，加入渐变 */
+    /* 英雄区域 (Hero) - 纯净的酒红到白色渐变 */
     .hero {
-        padding: 40px 0 80px; /* 顶部 padding 从 120px 缩减到 40px */
+        padding: 40px 0 80px; 
         text-align: center;
-        /* 3. 左侧酒红 (#722F37) 到 中间金色 (#D4AF37) 到 右侧白色 (#FFFFFF) */
-        background: linear-gradient(to right, #722F37 0%, #D4AF37 60%, #FFFFFF 100%);
-        min-height: 80vh; /* 稍微减小高度让内容更聚焦 */
+        /* 修改为左侧酒红，右侧白色的渐变，酒红覆盖前50%以保证白色文字清晰 */
+        background: linear-gradient(to right, #722F37 0%, #993f4a 50%, #FFFFFF 100%);
+        min-height: 80vh; 
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -61,7 +60,7 @@
 
     .hero-badge {
         display: inline-block;
-        background: rgba(255, 255, 255, 0.2); /* 半透明白底适配暗色背景 */
+        background: rgba(255, 255, 255, 0.15); 
         color: #ffffff;
         padding: 8px 16px;
         border-radius: 20px;
@@ -69,7 +68,8 @@
         font-weight: 600;
         margin-bottom: 24px;
         letter-spacing: 0.05em;
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(4px); /* 加入磨砂玻璃效果 */
     }
 
     .hero h1 {
@@ -78,16 +78,16 @@
         letter-spacing: -.015em;
         margin-bottom: 20px;
         color: #ffffff;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.2); /* 增加阴影防止文字融入白色背景 */
+        text-shadow: 0 4px 15px rgba(0,0,0,0.25); /* 加强阴影防止右侧融入白底 */
     }
 
     .hero p {
         font-size: clamp(20px, 3vw, 24px);
-        color: #f1f1f1;
+        color: #f8f8f8;
         max-width: 700px;
         margin: 0 auto 40px;
         font-weight: 500;
-        text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+        text-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
     .countdown-wrapper {
@@ -97,10 +97,10 @@
         margin-bottom: 40px;
     }
     .cd-box {
-        background: rgba(255, 255, 255, 0.9); /* 半透明玻璃质感 */
+        background: rgba(255, 255, 255, 0.95); 
         padding: 15px 20px;
         border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         min-width: 80px;
     }
     .cd-num {
@@ -118,7 +118,7 @@
 
     .btn {
         display: inline-block;
-        background: var(--apple-dark); /* 改为深色以更好匹配红色/金色背景 */
+        background: var(--apple-dark); 
         color: #fff;
         padding: 16px 36px;
         border-radius: 30px;
@@ -133,7 +133,6 @@
         transform: scale(1.02);
     }
 
-    /* 6. 按钮下方的辅助链接 */
     .sub-link {
         margin-top: 16px;
     }
@@ -145,7 +144,8 @@
         transition: 0.3s;
     }
     .hero .sub-link a {
-        color: #ffffff; /* 确保 hero 区域的辅助链接可见 */
+        color: #ffffff; 
+        text-shadow: 0 1px 3px rgba(0,0,0,0.4);
     }
     .sub-link a:hover {
         opacity: 1;
@@ -163,7 +163,6 @@
         font-weight: 700;
     }
 
-    /* 3D 色板展示区 */
     .color-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -186,7 +185,6 @@
         box-shadow: 0 30px 60px rgba(0,0,0,0.12);
     }
 
-    /* 使图片链接表现正常 */
     .color-card a.img-link {
         display: block;
         margin-bottom: 20px;
@@ -217,7 +215,6 @@
         font-weight: 500;
     }
 
-    /* 创作者画廊 */
     .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -247,7 +244,6 @@
         text-decoration: underline;
     }
 
-    /* 产品特性 */
     .features {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -271,7 +267,6 @@
         font-size: 16px;
     }
 
-    /* 预售转化区 */
     .preorder {
         background: #000;
         color: white;
